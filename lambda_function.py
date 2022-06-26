@@ -69,8 +69,8 @@ def postMessage(message):
 
 def lambda_handler(event, context):
     try:
-        print(event)
-        message = makeMessage(event['page'], event['component'], event['component_update'])
+        content = json.loads(event["body"])
+        message = makeMessage(content['page'], content['component'], content['component_update'])
         postMessage(message)
     except Exception as e:
         print(e)
